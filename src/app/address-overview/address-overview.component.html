@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="container">
+      <app-add-address *ngIf="showAddress" (addressEmitter)="onAddAddress($event)">
+      </app-add-address>
+    </div>
+  </div>
+  <!-- An Overview of all addresses -->
+  <div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Street</th>
+            <th scope="col">City</th>
+            <th scope="col">Zip code</th>
+            <th scope="col">country</th>
+            <th scope="col">City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let address of listOfAddresses">
+            <td>{{ address.id }}</td>
+            <td>{{ address.street }}</td>
+            <td>{{ address.city }}</td>
+            <td>{{ address.zipcode}}</td>
+            <td>{{ address.country}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)= "showAddressDetails()"> show details </button>
+    </div>
+  </div>
+
+  

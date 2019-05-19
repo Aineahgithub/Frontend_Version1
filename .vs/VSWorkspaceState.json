@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\account-overview",
+    "\\src\\app\\customerview",
+    "\\src\\app\\transactions"
+  ],
+  "SelectedNode": "\\package-lock.json",
+  "PreviewInSolutionExplorer": false
+}

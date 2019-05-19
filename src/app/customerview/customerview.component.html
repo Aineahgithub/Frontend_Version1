@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="container">
+    <app-add-customer *ngIf="showAddCustomer" (customerEmitter)="onAddCustomer($event)">
+    </app-add-customer>
+  </div>
+</div>
+<!-- An Overview of all customers -->
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Accounts</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of listOfCustomers">
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.age}}</td>
+        <!------  <td><a href=" <overv> </> ">{{ user.email }}</a></td>
+          <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+        --->
+        </tr>
+      </tbody>
+    </table>
+    <button (click)= "showCustomerDetails()"> show details </button>
+  </div>
+</div>
+

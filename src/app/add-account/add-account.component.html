@@ -1,0 +1,35 @@
+<div> <input [(ngModel)]="accountNr" type="number" placeholder="account number">
+  <div> <input [(ngModel)]="balance" type="number" placeholder="balance">
+    <div> <input [(ngModel)]="amount" type="number" placeholder="amount">
+  <button (click)="addAccount()">Add  a new account</button>
+   </div>
+  <!----- <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="addOnsubmit()" #AccountForm="ngForm">
+          <div class="form-group">
+            <label for="accountNr">Account number</label>
+            <input type="text" [(ngModel)]="account.accountNr" 
+              class="form-control" id="accountNr" name="accountNr" placeholder="Enter your street account number"
+              required #accountNr="ngModel">
+        </div>
+          <div [hidden]="!accountNr.pristine" class="alert alert-danger">account number is required</div>
+          <div class="form-group">
+            <label for="balance">Balance</label>
+            <input type="number" [(ngModel)]="account.balance" 
+              class="form-control" id="balance" name="balance" placeholder="Enter your balance"
+              required #balance="ngModel">
+            <div [hidden]="!balance.pristine" class="alert alert-danger">balance is required</div>
+            <div class="form-group">
+              <label for="amount">Amount</label>
+              <input type="number" [(ngModel)]="account.amount" 
+                class="form-control" id="amount" name="amount" placeholder="Enter amount"
+                required #amount="ngModel">
+            </div>
+            <div [hidden]="!amount.pristine" class="alert alert-danger">amount is required</div>
+        
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Submit</button>
+        </form>
+      </div>
+    </div>
+  -->
+  

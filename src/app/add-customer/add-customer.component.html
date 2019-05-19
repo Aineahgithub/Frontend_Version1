@@ -1,0 +1,121 @@
+<!----<p>
+<input [(ngModel)]="firstName" type="text" placeholder="Firstname">
+<input [(ngModel)]="lastName" type="text" placeholder="lastname">
+<input [(ngModel)]="age" type="number" placeholder="age">
+<button (click)="addCustomer()">Add a new customer</button>
+</p>
+-->
+
+ <form [formGroup]='customerForm'>
+<mat-form-field >
+  <input formControlName="firstName" matInput placeholder="your first name">
+  <mat-error *ngIf="firstName.invalid">The name is invalid  </mat-error>
+  <br>
+  <mat-hint> At least 3 characters </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+      <input formControlName="lastName" matInput placeholder="your surname">
+      <mat-error *ngIf="lastName.invalid">The name is invalid  </mat-error>
+      <mat-hint> At least 3 characters </mat-hint>
+      </mat-form-field>
+      <mat-form-field >
+          <input formControlName="age" matInput placeholder="enter your age">
+          <mat-error *ngIf="age.invalid">Enter a valid age </mat-error>
+          <mat-hint> at least 16 yrs old</mat-hint>
+          </mat-form-field>
+
+      <mat-form-field    class="example-full-width" >
+          <span matPrefix>+49 &nbsp;</span>
+          <input #input maxlength="10" formControlName = "telephone" type="tel" matInput placeholder="Telephone">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="telephone.invalid">The telephone number  is invalid  </mat-error>
+          <mat-hint > Min 8 and  Max 14   {{input.value?.length || 0}}/10</mat-hint>
+ 
+        </mat-form-field>
+
+        <mat-form-field >
+            <input formControlName="email" matInput placeholder=" enter your email ">
+            <mat-error *ngIf="email.invalid">The email  is invalid  </mat-error>
+            <mat-hint> exampe.com/de/uk  </mat-hint>
+            </mat-form-field>
+
+        
+  
+</form>
+
+<!--
+   <span class="add-add-address">Address</span>
+   <p>
+    <label> street  :  </label>
+    
+    <input formControlName="street"
+    
+           type="text"
+           placeholder="Please insert the street name and hause number"
+           [ngClass]="{ 'invalid': f.street.errors && f.street.touched }">
+           </p>
+    <span *ngIf="f.street.errors && f.street.touched">Street name is required</span>
+  <p>
+    <label>  city : </label>
+    <input formControlName="city" type="text" placeholder="Please enter your city name"
+    [ngClass]="{ 'invalid': f.city.errors && f.city.touched }">
+    
+    </p>
+    <span *ngIf="f.city.errors && f.city.touched">City name is required 
+    </span>
+    <p>
+    <label>  Zip code : </label>
+    <input formControlName="zipcode" type="text" placeholder="enter the your code "
+    [ngClass]="{ 'invalid': f.zipcode.errors && f.zipcode.touched }">
+    </p>
+    <span *ngIf="f.zipcode.errors && f.zipcode.touched">The Zip code is required
+    </span>
+    <label> Country :  </label>
+    <input formControlName="country" type="text" placeholder="Please enter your country name"
+    [ngClass]="{ 'invalid': f.country.errors && f.country.touched }">
+    <span *ngIf="f.country.errors && f.country.touched">Country name is required.
+    </span>
+    <p>
+    <button   class="add-address-button"(click)="AddAddress()">Add a new Address</button>
+    </p>
+  
+-->
+<!----<form class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <span matPrefix>+49 &nbsp;</span>
+    <input type="tel" matInput placeholder="Telephone">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+    
+</form>
+-->
+<!-------
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="addCustomer()" #customerForm="ngForm">
+        <div class="form-group">
+          <label for="firstName">First name</label>
+          <input type="text" [(ngModel)]="customer.firstName" 
+            class="form-control" id="firstName" name="FirstName" placeholder="Enter your first  name"
+            required #firstName="ngModel">
+        </div>
+        <div [hidden]="!firstName.pristine" class="alert alert-danger">first  name is required</div>
+        <div class="form-group">
+          <label for="lastName">last name</label>
+          <input type="text" [(ngModel)]="customer.lastName" 
+            class="form-control" id="lastName" name="lastName" placeholder="Enter your lastName"
+            required #city="ngModel">
+          <div [hidden]="!lastName.pristine" class="alert alert-danger">last name is required</div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" [(ngModel)]="customer.age" 
+              class="form-control" id="age" name="age" placeholder="Enter your age"
+              required #age="ngModel">
+          </div>
+          <div [hidden]="!age.pristine" class="alert alert-danger">Age is required</div>
+        <button type="submit" [disabled]="!customerForm.form.valid" class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+-->

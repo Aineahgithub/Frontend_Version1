@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="container">
+    <app-add-account *ngIf="showAddAccounts" (accountsEmitter)="onAddAccount($event)">
+    </app-add-account>
+  </div>
+</div>
+<!-- An Overview of all accounts -->
+
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Balance</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Customerid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of listOfAccounts">
+          <td>{{ account.id }}</td>
+          <td>{{ account.balance }}</td>
+          <td>{{ account.amount }}</td>
+          <td>{{ account.customer }}</td>
+        
+        <!------  <td><a href=" <overv> </> ">{{ user.email }}</a></td>
+          <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+
+        --->
+        </tr>
+      </tbody>
+    </table>
+    <button (click)= "showAccountDetails()"> show details </button>
+  </div>
+</div>
+
+
+
