@@ -3,7 +3,7 @@ import { Customer } from './Customer';
 export class Address{
     id:number;
     street:string;
-    zipcode:string;
+    zipCode:string;
     city: string;
     country:string;
     customer:Customer;
@@ -11,7 +11,7 @@ export class Address{
     constructor(street:string, zipcode:string,city: string,country:string){
         this.street=street;
         this.city= city;
-        this.zipcode=zipcode;
+        this.zipCode=zipcode;
         this.country= country;
     }
 }

@@ -58,7 +58,7 @@
    <p>
     <label> street  :  </label>
     
-    <input formControlName="street"
+    <input formControlName="street" [(ngModel)]= "street"
     
            type="text"
            placeholder="Please insert the street name and hause number"
@@ -66,27 +66,28 @@
            </p>
     <span *ngIf="f.street.errors && f.street.touched">Street name is required</span>
   <p>
-    <label>  city : </label>
-    <input formControlName="city" type="text" placeholder="Please enter your city name"
+    <label>  Zip code : </label>
+    <input formControlName="city" [(ngModel)]= "city"  type="text" placeholder="Please enter your city name"
     [ngClass]="{ 'invalid': f.city.errors && f.city.touched }">
     
     </p>
     <span *ngIf="f.city.errors && f.city.touched">City name is required 
     </span>
     <p>
-    <label>  Zip code : </label>
-    <input formControlName="zipcode" type="text" placeholder="enter the your code "
-    [ngClass]="{ 'invalid': f.zipcode.errors && f.zipcode.touched }">
+    <label>  City : </label>
+    <input formControlName="zipCode" type="text" [(ngModel)]= "zipCode" placeholder="enter the your code "
+    [ngClass]="{ 'invalid': f.zipCode.errors && f.zipCode.touched }">
     </p>
-    <span *ngIf="f.zipcode.errors && f.zipcode.touched">The Zip code is required
+    <span *ngIf="f.zipCode.errors && f.zipCode.touched">The Zip code is required
     </span>
     <label> Country :  </label>
-    <input formControlName="country" type="text" placeholder="Please enter your country name"
+    <input formControlName="country"  [(ngModel)]= "country" type="text"  placeholder="Please enter your country name"
     [ngClass]="{ 'invalid': f.country.errors && f.country.touched }">
     <span *ngIf="f.country.errors && f.country.touched">Country name is required.
     </span>
     <p>
-    <button   class="add-address-button"(click)="AddAddress()">Add a new Address</button>
+    <button  type= "button"  class="add-address-button 
+    " mat-button (click)="addAddress()">Add a new Address</button>
     </p>
   
   </form>

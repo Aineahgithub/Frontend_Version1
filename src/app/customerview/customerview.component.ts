@@ -4,6 +4,8 @@ import { CustomerserviceService } from '../customerservice.service';
 import { Account } from '../add-customer/Classes/Account';
 import { AccountserviceService } from '../accountservice.service';
 import { mergeMap } from 'rxjs/operators';
+import { DataSource } from '@angular/cdk/table';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-customerview',
@@ -11,19 +13,24 @@ import { mergeMap } from 'rxjs/operators';
   styleUrls: ['./customerview.component.css']
 })
 export class CustomerviewComponent implements OnInit {
-  age: number;
-  firstName: string;
-  lastName: string;
+  age: number=0;
+  firstName: string= "";
+  lastName: string= "";
   account:Account;
   accountnr:string;
   amount:number
-  listOfCustomers = [];
+  listOfCustomers : Customer[]  = [new Customer("Game on",
+  "Barasa",6,"2312222222222","ebara@yha.de"), new Customer("edwin",
+  "jeck",98,"2312222222222","ebara@yha.de")];
   listOfAccounts = [];
   showAddCustomer = false;
+  customers:Customer []= [];
 
   constructor(private http1: CustomerserviceService,private http:AccountserviceService) { }
 
   ngOnInit() {
+this.http1.getCustomers().subscribe(ans=>this.customers= ans);
+
   }
 
   onAddCustomer(customer:Customer) {
@@ -54,7 +61,16 @@ export class CustomerviewComponent implements OnInit {
   }
 
   showDetails() {
-    this.showAddCustomer = !this.showAddCustomer;
+    this.showAddCustomer = !this.showAddCustomer;}
+
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age',
+   'telephone','email', 'address', 'accounts'];
+  dataSource = new MatTableDataSource(this.customers);
+  //DataSource= this.listOfCustomers;
+Datasource= this.customers;
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  
 
 }

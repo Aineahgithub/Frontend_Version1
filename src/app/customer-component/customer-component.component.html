@@ -1,7 +1,112 @@
-<ul class="list-group">
+<!--<ul class="list-group">
     <li class="list-group-item"> firstName: {{mycustomer.firstName}}</li> 
     <li class="list-group-item">lastName: {{mycustomer.lastName}}</li> 
     <li class="list-group-item">age: {{mycustomer.age}}</li> 
     <li class="list-group-item">account: {{mycustomer.account}}</li> 
     <li class="list-group-item">Address: {{mycustomer.address}}</li>   
   </ul>
+-->
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column --->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> Firstname </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.firstName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Surname </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.surname}} </td>
+    </ng-container>
+  
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mt-striped="true" mat-table [dataSource]="dataSource" >
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <!-- Name Column --->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column --->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" >
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column --->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column --->
+        <ng-container matColumnDef="telephone">
+          <th mat-header-cell *matHeaderCellDef> Telephone </th>
+          <td mat-cell *matCellDef="let customer"> {{customer.telephone}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> email </th>
+          <td mat-cell *matCellDef="let customer"> {{customer.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let customer"> {{customer.address}} </td>
+        </ng-container>
+        <ng-container matColumnDef="accounts">
+          <th mat-header-cell *matHeaderCellDef> Accounts </th>
+          <td mat-cell *matCellDef="let customer"> {{customer.accounts}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+

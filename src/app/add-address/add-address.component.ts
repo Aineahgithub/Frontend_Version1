@@ -19,7 +19,7 @@ export class AddAddressComponent implements OnInit {
     this.address1= new Address("","","","");
    }
    
-city:string= "";  zipcode:string="";
+city:string= "";  zipCode:string="";
 street:string ="";
 country:string = "";
    listofAddress = [];
@@ -29,7 +29,7 @@ country:string = "";
   ngOnInit() {
     this.addressForm= this.fb.group({ street:["", [Validators.required, Validators.minLength(3)]],
      city:["", [Validators.required, Validators.minLength(4)] ],
-     zipcode:["", [Validators.required, Validators.minLength(4)] ],
+     zipCode:["", [Validators.required, Validators.minLength(4)] ],
      country:["", [Validators.required, Validators.minLength(4)]]});
 
   }
@@ -39,24 +39,28 @@ country:string = "";
   }
   
   addAddress(){
-    if(! this.addressForm.invalid){
-      return ;
-    }
-    var address= new Address(this.street,this.city,this.zipcode,this.country);
+    // if(! this.addressForm.invalid){
+    //   return ;
+    // }
+    var address= new Address(this.street,
+    this.city,
+    this.zipCode, this.country);
 
     this.http.postAddress(address).pipe(
       mergeMap(_ => this.http.getAddress())
     ).subscribe(ansfromServer => this.listofAddress = ansfromServer);
-    alert(address);
+    alert(address.street);
     console.log(address);
     this.addressEmitter.emit(address);
 
   }
-  onSubmit() {
-    this.http.postAddress(this.address1).subscribe(result => this.gotoAddressList());
-  }
+
+
+  // onSubmit() {
+  //   this.http.postAddress(this.address1).subscribe(result => this.gotoAddressList());
+  // }
  
-  gotoAddressList() {
-    this.router.navigate(['/addresses']);
-  }
+  // gotoAddressList() {
+  //   this.router.navigate(['/addresses']);
+  // }
 }

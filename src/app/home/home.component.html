@@ -1,15 +1,18 @@
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-title>Banking App </mat-card-title>
+      <mat-card-subtitle>Developed By Katja and Edwin</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="https://www.yougrow-group.de/files/content/fussball.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+    
+
+    Hoch motivierte und dynamische Leute, 
+    die Java Programmierung beherrschen und über den 
+    Tellerrand hinausschauen können? Eigentlich zu schön, um wahr zu sein!“
+
       </p>
     </mat-card-content>
     <mat-card-actions>
@@ -66,16 +69,19 @@
 </mat-menu>
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <p>Overview</p>
+      <p *ngIf="showFiller">Money </p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
+        Transfer
+      </button>
+      <button (click)="showFiller =showFiller" mat-raised-button>
+        banking
       </button>
     </mat-drawer>
   
     <div class="example-sidenav-content">
       <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
+        Transactions
       </button>
     </div>
   

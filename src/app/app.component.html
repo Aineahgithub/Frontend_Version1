@@ -1,46 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card bg-dark my-5">
-        <div class="card-body">
-          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item"><a routerLink="/customers" class="btn btn-info">List of customers</a></li>
-            <li class="list-inline-item"><a routerLink="/addcustomer" class="btn btn-info">Add customer</a></li>
-            <li class="list-inline-item"><a routerLink="/accounts" class="btn btn-info">List of accounts </a></li>
-            <li class="list-inline-item"><a routerLink="/addaccount" class="btn btn-info">Add account</a></li>
-            <li class="list-inline-item"><a routerLink="/addresses" class="btn btn-info">List of addresses</a></li>
-            <li class="list-inline-item"><a routerLink="/addaddress" class="btn btn-info">Add address</a></li>
-          </ul>
-        </div>
-      </div>
-      <h2> 
-      <nav>     
-   <a routerLink="/addcustomer" class="btn btn-info">Add customer</a>
-    <a routerLink="/accounts" class="btn btn-info">List of accounts </a>
-    <a routerLink="/add-account" class="btn btn-info">Add account</a>
-   <a routerLink="/addresses" class="btn btn-info">List of addresses</a>
-   <a routerLink="/addaddress" class="btn btn-info">Add address</a>
-   
-   
-   
-    </nav>
-  </h2>
-    <!---
-      <nav>
-        <ul class="text-center list-inline py-3">
-          <li class="list-inline-item"><a routerLink="/customers" class="btn btn-info">List of customers</a></li>
-          <li class="list-inline-item"><a routerLink="/addcustomer" class="btn btn-info">Add customer</a></li>
-          <li class="list-inline-item"><a routerLink="/accounts" class="btn btn-info">List of accounts </a></li>
-          <li class="list-inline-item"><a routerLink="/addaccount" class="btn btn-info">Add account</a></li>
-          <li class="list-inline-item"><a routerLink="/addresses" class="btn btn-info">List of addresses</a></li>
-          <li class="list-inline-item"><a routerLink="/addaddress" class="btn btn-info">Add address</a></li>
-        </ul>
- 
-      </nav>
-    --><app-table></app-table>
+<div style="position: absolute; top: 0px; left: 0px; width: 300px; background-color: rgb(41, 41, 41); height: 12000px">
+    <app-navigation></app-navigation>
+</div>
+<div style="position: absolute; top: -8px; left: 800px;"  >
+   <app-login></app-login>  </div>
+
+ <!---- <div style="position: absolute; top: 0px; right: 200px;" >
+   <app-customerview></app-customerview>
+</div>
+-->
+<div style="position: absolute; top: 0px; left: 310px;">
+    <router-outlet></router-outlet>
+</div>
+
+<!-----<app-money-transfe-form></app-money-transfe-form>
+<app-table></app-table>
+     <app-login></app-login>
     <app-home></app-home>
       <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+-->    
+   

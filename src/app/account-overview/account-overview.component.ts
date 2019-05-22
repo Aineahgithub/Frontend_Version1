@@ -4,7 +4,8 @@ import { Customer } from '../add-customer/Classes/Customer';
 import { Account } from '../add-customer/Classes/Account';
 import { mergeMap } from 'rxjs/operators';
 import { Address } from '../add-customer/Classes/Address';
-
+import { MatTableDataSource } from '@angular/material';
+import { DataSource } from '@angular/cdk/table';
 @Component({
   selector: 'app-account-overview',
   templateUrl: './account-overview.component.html',
@@ -20,6 +21,9 @@ lastName:string;
 firstName:string;
 address:Address;
 customer:Customer;
+datasource = [];
+displayedColumns :string []= ['id', 'date', 'balance','accountNr',
+   'amount','deposit', 'withdraw'];
   
   listOfAccounts = [];
   accounts= [];
@@ -29,32 +33,19 @@ customer:Customer;
   ngOnInit() {
     this.http.getAccounts().subscribe(data=>{this.accounts=data;})
   }
-  onAddAccount(account:Account){
-    var customer = new Customer();
-    customer.age = this.age;
-    customer.lastName = this.lastName;
-    customer.firstName= this.firstName;
-    customer.address= this.address
-    
-
-    var customer1 = new Customer();
-    customer.age = this.age;
-    customer.lastName = this.lastName;
-    var account = new Account(2988, "abbbbb", 78);
-    account.setCustomer(customer);
-    
-    var account1 = new Account(this.balance, this.accountnr, this.amount);
-    account1.setCustomer(customer1);
-    this.listOfAccounts.push(account,account1);
-
-    this.http.postAccounts(this.listOfAccounts).pipe(
-      mergeMap(_ => this.http.getAccounts())
-    ).subscribe(ansfromServer => this.listOfAccounts = ansfromServer);
-
-    this.showAddAccount = false;
+  showAccount(){
+    this.http.getAccounts().subscribe(data =>this.datasource = data);
+    console.log(this.datasource);
   }
 
   showAccountDetails() {
     this.showAddAccount = !this.showAddAccount;
+  }
+  
+   //dataSource= new DataSource(this.accounts)
+  //dataSource = new MatTableDataSource(this.accounts);
+  //DataSource= this.listOfCustomers;
+  applyFilter(filterValue: string) {
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

@@ -7,13 +7,23 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { AddressOverviewComponent } from './address-overview/address-overview.component';
 import { NotFoundpageComponent } from './not-foundpage/not-foundpage.component';
+import { HomeComponent } from './home/home.component';
+import { MoneyTransfeFormComponent } from './money-transfe-form/money-transfe-form.component';
+import { AccountComponentComponent } from './account-component/account-component.component';
 
 const routes: Routes = [{ path: 'customers', component: CustomerviewComponent },
-{ path: 'addcustomer', component: AddCustomerComponent }, {path: 'accounts', component: AccountOverviewComponent },
-{ path: 'addaccount/:id', component: AddAccountComponent },{ path: 'addaddress', component: AddAddressComponent },
+{ path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+{ path: 'addcustomer', component: AddCustomerComponent }, 
+{path: 'accounts', component: AccountOverviewComponent },
+{ path: 'addaccount', component: AddAccountComponent },
+{ path: 'add-address', component: AddAddressComponent },
+{ path: 'account', component: AccountComponentComponent },
+{path: 'money-transfe-form', component:MoneyTransfeFormComponent},
 { path: 'addresses', component: AddressOverviewComponent },
-{ path: 'addresses/:id', component: AddressOverviewComponent },
-{ path: 'addaccount', component: AddAccountComponent }
+{ path: 'home', component: HomeComponent }
 ];
 
 @NgModule({

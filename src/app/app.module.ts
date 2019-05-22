@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
@@ -25,13 +23,15 @@ import { MaterialModule } from './material/material.module';
 import { TableComponent } from './table/table.component';
 import { MatTableModule,  MatButtonModule,
      MatMenuModule, MatSidenavModule,
-     MatCardModule 
+     MatCardModule , MatCheckboxModule
     } from '@angular/material';
     import{MatInputModule} from '@angular/material/input';
-
+  import {MatSelectModule} from '@angular/material/select'; 
 import { HomeComponent } from './home/home.component';
 import { MoneyTransfeFormComponent } from './money-transfe-form/money-transfe-form.component';
 import { FormsComponent } from './forms/forms.component';
+import { LoginComponent } from './login/login.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -49,15 +49,24 @@ import { FormsComponent } from './forms/forms.component';
     NotFoundpageComponent,
     HomeComponent,
     MoneyTransfeFormComponent,
-    FormsComponent
+    FormsComponent,
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, MatMenuModule, MatSidenavModule,
-     MatCardModule, 
-    HttpClientModule,MaterialModule,MatInputModule,
-    FormsModule, ReactiveFormsModule,MatTableModule,
-    MatButtonModule,MatIconModule,
+    AppRoutingModule, 
+    MatMenuModule,
+    MatSidenavModule,
+    MatCardModule, 
+    HttpClientModule,
+    MaterialModule,
+    MatInputModule,
+    FormsModule, MatSelectModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,MatCheckboxModule,
     BrowserAnimationsModule
 
   ],

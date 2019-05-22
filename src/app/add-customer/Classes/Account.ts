@@ -3,11 +3,11 @@ import { Customer } from './Customer';
 export class Account{
   private customer: Customer
   amount:number;
-  acountnr:string
+  accountnr:string
 
 
 
-    constructor(private balance?:number, private accountnr?:string,amount?:number){
+    constructor(private balance?:number,  accountnr?:string,amount?:number){
           this.accountnr=accountnr;
           this.balance=balance;
           this.amount= amount;
