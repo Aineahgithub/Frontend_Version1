@@ -2,7 +2,7 @@
   <p>
     Sender:
   <mat-form-field  appearance= "outline" >
-   <mat-select [(value)]="fromAccountId" [disabled]="disableSelect.value">
+   <mat-select [(value)]="toAccountId" [disabled]="disableSelect.value">
       <mat-option *ngFor = "let account of listOfAccounts"
      value="{{account.id}}">{{account.id}}</mat-option>
     </mat-select>
@@ -42,7 +42,7 @@ Receiver:
     <mat-hint >  Max 22 {{input.value?.length || 0}}/18 </mat-hint>
      -->
     <mat-form-field  appearance= "outline" >
-     <mat-select   [(value)]= "toAccountId" [disabled]="disableSelect.value">
+     <mat-select   [(value)]= "fromAccountId" [disabled]="disableSelect.value">
         <mat-option *ngFor = "let account of listOfAccounts"
        value="{{account.id}}">{{account.id}}</mat-option>
       </mat-select>
@@ -67,6 +67,15 @@ Transfer message:
           <p> <button type= "button"  mat-button (click)="getAccounts()"> get accounts</button>
           </p>
           <div *ngFor = "let account of listOfAccounts">
-            {{account.accountNr}}
+           Account: {{account.id}}, balance : {{account.balance}} Euro , date: {{account.date}}
           </div>
+          <p> <button type= "button"  mat-button (click)="getTransfers()"> Transactions</button>
+              <div *ngFor="let transfer of listofTransfers">
+                sender: {{transfer.fromAccountId}}
+                receiver: {{transfer.toAccountId}}
+                amount :{{transfer.amount}} Euro
+                message :{{transfer.message}}
+                Date :  {{transfer.date}}
+
+              </div>
   </form>

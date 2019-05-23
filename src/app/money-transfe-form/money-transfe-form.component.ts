@@ -22,9 +22,10 @@ export class MoneyTransfeFormComponent implements OnInit {
 toAccountId:number=4;
 fromAccountId:number=3;
 amount: number=100;
-date :Date = new Date();
+date :Date = new Date()
+listofTransfers:MoneyTransfer []= [];
 
-message:string = ""
+message:string = "Salary"
 listOfAccounts: Account []= [];
 transferForm: MoneyTransfer;
 ibans: number []= [];
@@ -52,7 +53,10 @@ getAccounts(){
   console.log(this.listOfAccounts)
   
 }
-
+getTransfers(){
+  this.transRest.getAllTransfers().subscribe(ans=>this.listofTransfers=ans);
+  console.log(this.listofTransfers);
+}
 Send(){
     //if(this.moneyForm.invalid){
       //return ;}

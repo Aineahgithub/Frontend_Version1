@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,7 @@ import { MoneyTransfeFormComponent } from './money-transfe-form/money-transfe-fo
 import { FormsComponent } from './forms/forms.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     MoneyTransfeFormComponent,
     FormsComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,10 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'fr' // 'de' for Germany, 'fr' for France ...
+   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

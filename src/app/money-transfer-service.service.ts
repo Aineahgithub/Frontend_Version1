@@ -31,7 +31,15 @@ Login(log: Login): Observable<Login> {
 }
 getAllLogins(): Observable<Login[]> {
 return this.http.get<Login[]>( this.url +'/getLogins');
+}
+getLogins(username:string): Observable<Login> {
+  return this.http.get<Login>( this.url +'/username');
+  }
+deleteTransfers(id:number): Observable<void> {
+  return this.http.get<void>(this.url+'/getTransfers');
+}
+updateTransfer(transfer: MoneyTransfer): Observable<void> {
 
-
+  return this.http.post<void>(this.url +'/transferMoney', transfer);
 }
 }

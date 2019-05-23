@@ -19,6 +19,7 @@ export class CustomerviewComponent implements OnInit {
   account:Account;
   accountnr:string;
   amount:number
+  
   listOfCustomers : Customer[]  = [new Customer("Game on",
   "Barasa",6,"2312222222222","ebara@yha.de"), new Customer("edwin",
   "jeck",98,"2312222222222","ebara@yha.de")];
@@ -65,11 +66,10 @@ this.http1.getCustomers().subscribe(ans=>this.customers= ans);
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age',
    'telephone','email', 'address', 'accounts'];
-  dataSource = new MatTableDataSource(this.customers);
+  datasource = new MatTableDataSource(this.customers);
   //DataSource= this.listOfCustomers;
-Datasource= this.customers;
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.datasource.filter = filterValue.trim().toLowerCase();
   }
   
 
