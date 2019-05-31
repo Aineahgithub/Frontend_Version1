@@ -8,15 +8,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountserviceService {
-
-  constructor(private http: HttpClient) { }
+  url = 'http://localhost:1289'
+  constructor(private http: HttpClient) {
+    
+   }
   postAccount(account: Account): Observable<Account> {
-    return this.http.post<Account>('http://localhost:1289/postAccount', account);
+    return this.http.post<Account>( this.url+'/postAccount', account);
 }
 getAccounts(): Observable<Account[]> {
-  return this.http.get<Account[]>('http://localhost:1289/getAccounts');
+  return this.http.get<Account[]>(this.url+'/getAccounts');
 }
 postAccounts(account : Account[]): Observable<Account> {
-  return this.http.post<Account>('http://localhost:1289/postAccounts', account);
+  return this.http.post<Account>( this.url+'/postAccounts', account);
 }
+updateAccount(account: Account): Observable<Account> {
+  
+  return this.http.put<Account>(this.url+'/updateAccount',account);
+}
+
+deleteAccount(id :number): Observable<void> {
+return this.http.delete<void>(this.url +'/deleteAccount'+id);
+}
+
+
 }

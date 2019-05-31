@@ -13,17 +13,13 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class AccountOverviewComponent implements OnInit {
   showAddAccount = false;
-age:number;
 amount:number;
 balance:number;
 accountnr:string;
-lastName:string;
-firstName:string;
-address:Address;
-customer:Customer;
+customer_id:number;
 datasource = [];
 displayedColumns :string []= ['id', 'date', 'balance','accountNr',
-   'amount','deposit', 'withdraw'];
+   'type','customer_id','deposit', 'withdraw'];
   
   listOfAccounts = [];
   accounts= [];
@@ -34,7 +30,9 @@ displayedColumns :string []= ['id', 'date', 'balance','accountNr',
     this.http.getAccounts().subscribe(data=>{this.accounts=data;})
   }
   showAccount(){
-    this.http.getAccounts().subscribe(data =>this.datasource = data);
+    this.http.getAccounts().subscribe(data =>this.dataSource = data);
+    console.error();
+    
     console.log(this.datasource);
   }
 
@@ -42,10 +40,10 @@ displayedColumns :string []= ['id', 'date', 'balance','accountNr',
     this.showAddAccount = !this.showAddAccount;
   }
   
-   //dataSource= new DataSource(this.accounts)
-  //dataSource = new MatTableDataSource(this.accounts);
-  //DataSource= this.listOfCustomers;
+  dataSource = new MatTableDataSource(this.dataSource);
+  
   applyFilter(filterValue: string) {
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

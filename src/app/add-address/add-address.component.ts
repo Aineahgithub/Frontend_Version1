@@ -4,6 +4,7 @@ import { mergeMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerserviceService } from '../customerservice.service';
 import { FormGroup, FormBuilder,FormControl,FormArray, Validators } from '@angular/forms';
+import { Customer } from '../add-customer/Classes/Customer';
 
 @Component({
   selector: 'app-add-address',
@@ -16,12 +17,13 @@ export class AddAddressComponent implements OnInit {
   addressForm:FormGroup;
   
   constructor(private fb:FormBuilder, private route: ActivatedRoute, private router:Router,private http:CustomerserviceService) {
-    this.address1= new Address("","","","");
+  
    }
    
 city:string= "";  zipCode:string="";
 street:string ="";
 country:string = "";
+customer_id: number;
    listofAddress = [];
 
   @Output()
@@ -30,7 +32,9 @@ country:string = "";
     this.addressForm= this.fb.group({ street:["", [Validators.required, Validators.minLength(3)]],
      city:["", [Validators.required, Validators.minLength(4)] ],
      zipCode:["", [Validators.required, Validators.minLength(4)] ],
-     country:["", [Validators.required, Validators.minLength(4)]]});
+  
+     country:["", [Validators.required, Validators.minLength(4)]],
+     customer_id:["", [Validators.required, Validators.minLength(1)] ]});
 
   }
 
@@ -39,9 +43,8 @@ country:string = "";
   }
   
   addAddress(){
-    // if(! this.addressForm.invalid){
-    //   return ;
-    // }
+    var customer= new Customer()
+     this.customer_id= customer.customer_id
     var address= new Address(this.street,
     this.city,
     this.zipCode, this.country);
@@ -52,15 +55,7 @@ country:string = "";
     alert(address.street);
     console.log(address);
     this.addressEmitter.emit(address);
-
+   this.router.navigate(['addcustomer'])
   }
 
-
-  // onSubmit() {
-  //   this.http.postAddress(this.address1).subscribe(result => this.gotoAddressList());
-  // }
- 
-  // gotoAddressList() {
-  //   this.router.navigate(['/addresses']);
-  // }
 }

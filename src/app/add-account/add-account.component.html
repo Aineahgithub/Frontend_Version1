@@ -23,11 +23,18 @@
           </p>
           <p>
               <mat-form-field appearance= "outline">
-                  <input formControlName="amount" [(ngModel)]="amount" matInput placeholder ="enter starting maaa">
-                  <mat-error *ngIf="amount.invalid">You must have at least 0 amount </mat-error>
-                  <mat-hint> Only positive values are allowed </mat-hint>
+                  <input formControlName="type" [(ngModel)]="type" matInput placeholder ="account type">
+                  <mat-error *ngIf="type.invalid"> At leat 4 characters for Giro </mat-error>
+                  <mat-hint> 4 Characters are required </mat-hint>
                   </mat-form-field>
                   </p>
+                  <p>
+                      <mat-form-field appearance= "outline">
+                          <input formControlName="customer_id"  matInput placeholder ="enter Customer id">
+                          <mat-error *ngIf="type.invalid"> Customer must exist </mat-error>
+                          <mat-hint> At least  a  customer must exist  </mat-hint>
+                          </mat-form-field>
+                          </p>
           <button type= button mat-button (click)="addAccount()">Add  a new account</button>
     </form>
     

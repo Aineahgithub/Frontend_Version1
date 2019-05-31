@@ -1,16 +1,13 @@
 .example-card {
-    max-width: 400px;  
+    top:200px;
+    max-width: 800px;  
   }
   
-  .example-header-image {
-    background-image: url('https://www.yougrow-group.de/files/content/fussball.jpg');
-    background-size: cover;
-  }
   .example-container {
-    
-    position: right;
-    width: 500px;
-    height: 300px;
+    bottom:0px;
+    position: left;
+    width: 1200px;
+    height: 200px;
     border: 1px solid rgba(0, 0, 0, 0.5);
   }
   

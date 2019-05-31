@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,LOCALE_ID } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
+import { NgModule, Injectable } from '@angular/core';
+import { HttpClientModule, HttpInterceptor, HttpRequest, HttpHandler, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatStepperModule} from '@angular/material/stepper';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { AddAccountComponent } from './add-account/add-account.component';
@@ -33,7 +34,19 @@ import { FormsComponent } from './forms/forms.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SettingsComponent } from './settings/settings.component';
+import { LoginserviceService } from './loginservice.service';
+import { UpdateComponent } from './update/update.component';
+import { AboutComponent } from './about/about.component';
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
 
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +66,10 @@ import { SettingsComponent } from './settings/settings.component';
     FormsComponent,
     LoginComponent,
     NavigationComponent,
-    SettingsComponent
+    SettingsComponent,
+    UpdateComponent,
+    AboutComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -67,15 +83,14 @@ import { SettingsComponent } from './settings/settings.component';
     FormsModule, MatSelectModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatButtonModule,
+    MatButtonModule,MatStepperModule,
     MatIconModule,MatCheckboxModule,
     BrowserAnimationsModule
 
   ],
-  providers: [{
-    provide: LOCALE_ID,
-    useValue: 'fr' // 'de' for Germany, 'fr' for France ...
-   }],
+  providers: [LoginserviceService,{provide: HTTP_INTERCEPTORS, 
+    useClass: XhrInterceptor, multi: true }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

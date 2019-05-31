@@ -29,6 +29,9 @@ getAllTransfers(): Observable<MoneyTransfer[]> {
 Login(log: Login): Observable<Login> {
   return this.http.post<Login>( this.url+'/login', log);
 }
+updateLogin(log: Login): Observable<void> {
+  return this.http.put<void>( this.url+'/login', log);
+}
 getAllLogins(): Observable<Login[]> {
 return this.http.get<Login[]>( this.url +'/getLogins');
 }
@@ -36,10 +39,10 @@ getLogins(username:string): Observable<Login> {
   return this.http.get<Login>( this.url +'/username');
   }
 deleteTransfers(id:number): Observable<void> {
-  return this.http.get<void>(this.url+'/getTransfers');
+  return this.http.delete<void>(this.url+'/getTransfers'+id);
 }
 updateTransfer(transfer: MoneyTransfer): Observable<void> {
 
-  return this.http.post<void>(this.url +'/transferMoney', transfer);
+  return this.http.put<void>(this.url +'/transferMoney', transfer);
 }
 }

@@ -58,12 +58,10 @@ getTransfers(){
   console.log(this.listofTransfers);
 }
 Send(){
-    //if(this.moneyForm.invalid){
-      //return ;}
       this.transferForm= new MoneyTransfer(this.toAccountId, this.fromAccountId,this.amount, this.message,this.date);
       this.transRest.sendMoney(this.transferForm).subscribe();
       alert(this.transferForm.fromAccountId)
-      console.log(this.transferForm);
+      console.log(this.transferForm.amount);
 
       
 

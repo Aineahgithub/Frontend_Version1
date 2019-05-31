@@ -10,32 +10,31 @@ import { Address } from './add-customer/Classes/Address';
   providedIn: 'root'
 })
 export class CustomerserviceService {
- url='http://localhost:1289';
+  url = 'http://localhost:1289'
   constructor(private http: HttpClient) {
-    //const urL = 'http://localhost:1289';
-    //http://localhost:1289/postCustomer';
+  
    }
   postCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.url +'/postCustomer', customer);
+    return this.http.post<Customer>(this.url+'/postCustomer', customer);
 }
 
 deleteCustomers(id:number): Observable<Customer[]> {
   return this.http.delete<Customer[]>(this.url+'/deleteCustomer'+id);
 }
 updateCustomer(customer: Customer): Observable<void> {
-  return this.http.put<void>(this.url+'updateCustomer', customer);
+  return this.http.put<void>(this.url+'/updateCustomer', customer);
 }
 
 getCustomers(): Observable<Customer[]> {
-return this.http.get<Customer[]>('http://localhost:1289/getCustomers');
+return this.http.get<Customer[]>(this.url+'/getCustomers');
 }
 postAddress(address: Address): Observable<Address> {
 
-  return this.http.post<Address>('http://localhost:1289/postAddress', address);
+  return this.http.post<Address>(this.url+'/postAddress', address);
 }
 
 getAddress(): Observable<Address[]> {
-return this.http.get<Address[]>('http://localhost:1289/getAddresses');
+return this.http.get<Address[]>(this.url+'/getAddresses');
 }
 updateAddress(address: Address): Observable<Address> {
   

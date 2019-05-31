@@ -7,40 +7,11 @@
      value="{{account.id}}">{{account.id}}</mat-option>
     </mat-select>
   </mat-form-field>
-      <!----
-        <mat-form-field>
-            <mat-label>Choose one</mat-label>
-            <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-              <mat-option>Clear</mat-option>
-              <mat-option value="valid">Valid option</mat-option>
-              <mat-option value="invalid">Invalid option</mat-option>
-            </mat-select>
-            <mat-hint>Errors appear instantly!</mat-hint>
-            <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-            <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-              Your selection is invalid
-            </mat-error>
-          </mat-form-field>
-        -->
-    <!----
-      <span matPrefix>DE23 &nbsp;</span>
-    <input  #input maxlength = "18" formControlName="accountNrfrom" matInput placeholder=" enter Iban nr">
-    <mat-error *ngIf="accountNrfrom.invalid">The accountNr is invalid  </mat-error>
-    <mat-hint >  Max 22 {{input.value?.length || 0}}/18 </mat-hint>
-    -->
+
   </p>
   <p>
 
-
 Receiver:
-<!----
-    <mat-form-field  appearance= "outline" >
-     
-      <span matPrefix>DE23 &nbsp;</span>
-    <input  #input maxlength = "18"formControlName="accountNrto" matInput placeholder="Enter  iban ">
-    <mat-error *ngIf="accountNrto.invalid">The accountNr is invalid  </mat-error>
-    <mat-hint >  Max 22 {{input.value?.length || 0}}/18 </mat-hint>
-     -->
     <mat-form-field  appearance= "outline" >
      <mat-select   [(value)]= "fromAccountId" [disabled]="disableSelect.value">
         <mat-option *ngFor = "let account of listOfAccounts"
@@ -51,31 +22,21 @@ Receiver:
     <p>
       Amount :
     <mat-form-field appearance= "outline">
-      
         <input formControlName="amount" [(ngModel)] ="amount" matInput placeholder="enter amount">
         <mat-error *ngIf="amount.invalid">You must have at least 0 amount </mat-error>
         <mat-hint> Only positive values are allowed </mat-hint>
         </mat-form-field>
 </p>
 Transfer message:
-        <mat-form-field appearance= "outline">
-          <textarea type="text" [(ngModel)]="value" matInput placeholder="enter transfer message"></textarea>
+        <mat-form-field appearance="outline">
+          <textarea type="text" [(ngModel)]="message" matInput placeholder="enter transfer message"></textarea>
           </mat-form-field>
         
         <p> <button type= "button"  mat-button (click)="Send()"> send money</button>
           </p>
-          <p> <button type= "button"  mat-button (click)="getAccounts()"> get accounts</button>
+          <p> <button type= "button"  mat-button (click)="getAccounts()"> Accounts balance</button>
           </p>
           <div *ngFor = "let account of listOfAccounts">
-           Account: {{account.id}}, balance : {{account.balance}} Euro , date: {{account.date}}
-          </div>
-          <p> <button type= "button"  mat-button (click)="getTransfers()"> Transactions</button>
-              <div *ngFor="let transfer of listofTransfers">
-                sender: {{transfer.fromAccountId}}
-                receiver: {{transfer.toAccountId}}
-                amount :{{transfer.amount}} Euro
-                message :{{transfer.message}}
-                Date :  {{transfer.date}}
-
-              </div>
+           Account: {{account.id}}, <mat-icon>account_balance</mat-icon> : {{account.balance}} <mat-icon>euro_symbol</mat-icon> , date: {{account.date}}
+    </div>
   </form>

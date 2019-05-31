@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from '../add-customer/Classes/Customer';
 import { CustomerserviceService } from '../customerservice.service';
 import { Account } from '../add-customer/Classes/Account';
+import{Address}from  '../add-customer/Classes/Address';
 import { AccountserviceService } from '../accountservice.service';
 import { mergeMap } from 'rxjs/operators';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material';
+import { HttpBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-customerview',
@@ -18,59 +20,49 @@ export class CustomerviewComponent implements OnInit {
   lastName: string= "";
   account:Account;
   accountnr:string;
-  amount:number
+  id:number;
   
-  listOfCustomers : Customer[]  = [new Customer("Game on",
-  "Barasa",6,"2312222222222","ebara@yha.de"), new Customer("edwin",
-  "jeck",98,"2312222222222","ebara@yha.de")];
+  type:string
+  datasource :Customer [] = [];
+  customer: Customer;
+  listOfCustomers:Customer[]= [];
+  listOfaddresses: Address []= []; 
   listOfAccounts = [];
   showAddCustomer = false;
   customers:Customer []= [];
-
+  showCustomers :boolean = false;
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age',
+   'telephone','email', 'address', 'accounts', 'delete','edit'];
+  dataSource = new MatTableDataSource(this.dataSource);
   constructor(private http1: CustomerserviceService,private http:AccountserviceService) { }
-
   ngOnInit() {
-this.http1.getCustomers().subscribe(ans=>this.customers= ans);
-
+    this.http1.getCustomers().
+    subscribe(data => this.dataSource = data);
+    console.log(this.dataSource);
+    error=>console.log(error);
   }
-
-  onAddCustomer(customer:Customer) {
-    this.showAddCustomer;
-    customer = new Customer();
-    customer.age = this.age;
-    customer.lastName = this.lastName;
-
-    var customer1 = new Customer();
-    customer.age = this.age;
-    customer.lastName = this.lastName;
-    this.account = new Account(2988, this.accountnr, this.amount);
-    
-    this.listOfCustomers.push(customer);
-
-    var account1 = new Account(2988, "78");
-    account1.setCustomer(customer1);
-    this.listOfAccounts = [{account1 }];
-
-    this.http1.postCustomer(customer).pipe(
-      mergeMap(_ => this.http1.getCustomers())
-    ).subscribe(ansfromServer => this.listOfCustomers = ansfromServer);
-    this.http.postAccounts(this.listOfAccounts).pipe(
-      mergeMap(_ => this.http.getAccounts())
-    ).subscribe(ansfromServer => this.listOfAccounts = ansfromServer);
-
-
+  getCustomers(){
+    this.http1.getCustomers().
+    subscribe(data => this.dataSource = data);
+    console.log(this.dataSource);
+    error=>console.log(error);
+  
   }
+getAccounts(){
+  this.http.getAccounts().subscribe(ans=>this.listOfAccounts=ans);
+
+}
+getAddress(){
+  this.http1.getAddress().subscribe(ans=>this.listOfaddresses=ans);
+}
 
   showDetails() {
     this.showAddCustomer = !this.showAddCustomer;}
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age',
-   'telephone','email', 'address', 'accounts'];
-  datasource = new MatTableDataSource(this.customers);
-  //DataSource= this.listOfCustomers;
+
   applyFilter(filterValue: string) {
-    this.datasource.filter = filterValue.trim().toLowerCase();
+   this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
-
+  
 }

@@ -1,23 +1,4 @@
 
-<h4>mat-select</h4>
-<mat-form-field>
-  <mat-label>Choose an option</mat-label>
-  <mat-select [disabled]="disableSelect.value">
-    <mat-option value="option1">Option 1</mat-option>
-    <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-    <mat-option value="option3">Option 3</mat-option>
-  </mat-select>
-</mat-form-field>
-<ul>
-  <li *ngFor = "let account of accounts">
-    AccountNr:{{account.getaccountnr()}}
-    Balance: {{account.getBalance()}}
-    Amount:{{account.getAmount()}}
-    Deposit: {{account.getDeposit()}}
-    
-
-  </li> 
- 
-</ul>
-<button class = "button-styled" click = "getAccounts()"> Get Account </button>
-
+  <div style="position: absolute; top: 0px; left: 0px; width: 1200px; background-color: rgb(60, 132, 173); height: 12000px">
+      <app-navigation></app-navigation>
+  </div>

@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountserviceService } from '../accountservice.service';
 import { mergeMap} from 'rxjs/operators'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Type } from '@angular/compiler';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-add-account',
@@ -14,6 +16,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddAccountComponent implements OnInit {
   balance:number=0;
   age:number;
+  custmer_id: number;
   amount:number= 80;
   firstName:string;
   lastname:string;
@@ -23,6 +26,7 @@ export class AddAccountComponent implements OnInit {
   accou: Account;
   id:number;
   accountForm: FormGroup;
+  type:string= "";
   @Output()
   accountsEmitter = new EventEmitter<Account>();
 
@@ -34,7 +38,10 @@ export class AddAccountComponent implements OnInit {
     this.accountForm= fb.group({ accountnr:["", [Validators.required, Validators.minLength(18),
       Validators.maxLength(22)]],
     balance:[0, [Validators.required, Validators.min(1)]] ,
-     amount:[89, [Validators.required, Validators.min(1)] ]});
+     type:["", [Validators.required, Validators.minLength(4)] ],
+     custmer_id:[1, [Validators.required, Validators.minLength(1)] ]
+    });
+     
   }
     );
   }
@@ -48,18 +55,19 @@ export class AddAccountComponent implements OnInit {
   addAccount(){
     if(this.accountForm.invalid){
       return ;}
-    var customer = new Customer();
-    customer.age = this.age;
-    customer.lastName = this.lastname;
-    var account= new Account(this.balance, this.accountnr, this.amount);
+      var customer = new Customer();
+    //this.custmer_id = customer.customer_id;
 
+    var account= new Account(this.balance, this.accountnr, this.type, this.custmer_id);
     this.http.postAccount(account).pipe(
       mergeMap(_ => this.http.getAccounts())
     ).subscribe(ansfromServer => this.accountList = ansfromServer);
 
     console.log(account);
-    alert(account.amount)
+    alert(account.accountnr)
     this.accountsEmitter.emit(account);
+    this.router.navigate[('accounts')]
+    
 
   }
   

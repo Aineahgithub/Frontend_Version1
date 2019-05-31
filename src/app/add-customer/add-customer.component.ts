@@ -5,6 +5,11 @@ import { CustomerserviceService } from '../customerservice.service';
 import { mergeMap } from 'rxjs/operators';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { Address } from './Classes/Address';
+import { Login } from './Classes/Login';
+import { Account } from './Classes/Account';
+import { MoneyTransferServiceService } from '../money-transfer-service.service';
+import { HttpBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-customer',
@@ -12,22 +17,41 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-
+signup:boolean = true;
   customerForm: FormGroup;
  cust :Customer;
+  addressForm: FormGroup;
+  loginForm:FormGroup;
   firstName : string= "Edwin";
   lastName: string ="Aineah";
    account : Account []=[] ;
    email: string ="emm@yahoo.de";
    telephone: string ="01111199999";
+   street: string="";
+   city:string= ""
+   country:string=""
+   zipCode:string=""
+   customer_id: number;
+   username:string="";
+   passwort:string="";
+   login:Login;
+   address:Address
+   log:Login;
+   adress:Address
+   addresses: Address[]= [];
+   
+  
+    customer:Customer;
    listOfCustomers: Customer []= [];
+
 name:string= "";
 age:number= 16;
   @Output()
   customerEmitter = new EventEmitter<Customer>();
   id: number;
 
-  constructor(private fb: FormBuilder ,private route: ActivatedRoute, private router:Router,private http:CustomerserviceService) {
+  constructor(private fb: FormBuilder ,private route: ActivatedRoute, private router:Router,
+    private http:CustomerserviceService, private http1:MoneyTransferServiceService) {
     this.customerForm=fb.group({ firstName:["", [Validators.required, Validators.minLength(3)]],
     lastName:["", [Validators.required, Validators.minLength(4)] ],
     age:[16, [Validators.required, Validators.min(16)] ],
@@ -36,48 +60,57 @@ age:number= 16;
  }
   
   ngOnInit() {
+    this.customerForm = this.fb.group({ firstName:["", [Validators.required, Validators.minLength(3)]],
+  lastName:["", [Validators.required, Validators.minLength(4)] ],
+  age:[16, [Validators.required, Validators.min(16)] ],
+  telephone:["", [Validators.required, Validators.maxLength(14) ] ],
+  email:["", [Validators.required, Validators.email]]});
+  this.addressForm= this.fb.group({ street:["", [Validators.required, Validators.minLength(3)]],
+     city:["", [Validators.required, Validators.minLength(4)] ],
+     zipCode:["", [Validators.required, Validators.minLength(4)] ],
+     country:["", [Validators.required, Validators.minLength(4)]]});
+     this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      passwort: ['', [Validators.required,Validators.maxLength(5)]]
+  });
   }
   get f(){
     return this.customerForm.controls;
   }
-  addCustomer() {
-   // this.customerForm.get(this.firstName).value;
-   // this.customerForm.get(this.lastName).value;
-    //his.customerForm.get(this.telephone).value;
-   // this.customerForm.get(this.email).value;
-   // var person = new Customer(this.firstName, this.lastName, this.age);
-   // this.http.postCustomer(person).subscribe(result => this.gotoCustomersList())
-   // console.log(person.firstName);
-    //this.customerEmitter.emit(person);
-    //if(this.customerForm.invalid){
-     // return ;
-   // }
+  signUp() {
     debugger;
-     var customer= new Customer(this.firstName, this.lastName,
-   this.age, this.telephone ,this.email);
+    var log= new Login(this.loginForm.get(this.username).value,this.loginForm.get(this.passwort).value);
+    this.http1.Login(log).subscribe(ans=>this.login=ans);
+    var adress=new Address(this.addressForm.get(this.street).value,
+     this.addressForm.get(this.city).value,this.addressForm.get(this.zipCode).value, this.addressForm.get(this.country).value);
+    this.http.postAddress(adress).subscribe(ans=>{
+      return this.address = ans;
+    })
+    this.http.getAddress().subscribe(ans=>this.addresses=ans);
+    
+     this. customer= new Customer(this.firstName, this.lastName,
+   this.age, this.telephone ,this.email, adress,log);
+   if(this.customer.customer_id==null){
+    this.http.postCustomer(this.customer).subscribe();
+    this.router.navigate(['home']);
+    alert('Thank you for signing up, proceed to home login');
+    console.error();
+    console.log(this.customer.age);
+    this.router.navigate(['login']);}
+    else {
+      this.http.updateCustomer(this.customer).subscribe()
+       { this.router.navigate(['account']);}
+
+  } 
+  
+  
       
-
-    this.http.postCustomer(customer).pipe(
-      mergeMap(_ => this.http.getCustomers())
-    ).subscribe(ansfromServer => this.listOfCustomers = ansfromServer);
-    alert(customer.firstName);
-    console.log(customer);
-   // this.addressEmitter.emit(address);
-
-  }
-  //displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age',
-   //'telephone','email', 'address', 'accounts'];
-  //dataSource = new MatTableDataSource(this.listOfCustomers);
-
-  //pplyFilter(filterValue: string) {
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
-  //}
-  onSubmit() {
-    this.http.postCustomer(this.cust).subscribe(result => this.gotoCustomersList());
-  }
+    }
+    addCustomer(){
+      this.http.postCustomer(this.customer).subscribe();
+    }
  
-  gotoCustomersList() {
-    this.router.navigate(['/customers']);
   }
+  
 
-}
+

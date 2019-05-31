@@ -1,5 +1,5 @@
 table {
-    width: 100%;
+    width: 1200px;
 
   }
   
@@ -11,6 +11,6 @@ th{
 
   
   .mat-form-field {
-    font-size: 14px;
-    width: 50%;
+    font-size: 18px;
+    width: 100%;
   }

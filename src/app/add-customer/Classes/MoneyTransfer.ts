@@ -10,6 +10,6 @@ export class MoneyTransfer{
         this.fromAccountId= fromAccountId;
         this.amount= amount;
         this.message= message;
-        this.date= date;
+        this.date= new Date();
     }
 }

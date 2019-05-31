@@ -1,16 +1,19 @@
 import { Customer } from './Customer';
 
 export class Account{
-  private customer: Customer
-  amount:number;
+  
+  id:number;
+  type:String
   accountnr:string
+  customer_id: number
+  
 
 
-
-    constructor(private balance?:number,  accountnr?:string,amount?:number){
+    constructor(private balance?:number,  accountnr?:string,type?:string, customer_id?:number){
           this.accountnr=accountnr;
           this.balance=balance;
-          this.amount= amount;
+          this.type= type;
+          this.customer_id= customer_id;
          
         }
         
@@ -21,13 +24,7 @@ export class Account{
           setbalance(balance: number): void {
             this.balance = balance;
           }
-          getCustomer(): Customer {
-            return this.customer;
-          }
-        
-          setCustomer(customer: Customer): void {
-            this.customer = customer;
-          }
+
           setDeposit(amount:number): void {
             this.balance  = this.balance + amount;
           }

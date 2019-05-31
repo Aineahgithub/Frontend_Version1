@@ -4,9 +4,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\account-overview",
+    "\\src\\app\\add-address",
+    "\\src\\app\\add-customer",
     "\\src\\app\\customerview",
+    "\\src\\app\\money-transfe-form",
     "\\src\\app\\transactions"
   ],
-  "SelectedNode": "\\package-lock.json",
+  "SelectedNode": "\\src\\app\\money-transfe-form\\money-transfe-form.component.html",
   "PreviewInSolutionExplorer": false
 }

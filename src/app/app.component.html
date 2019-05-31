@@ -1,21 +1,16 @@
-<div style="position: absolute; top: 0px; left: 0px; width: 300px; background-color: rgb(41, 41, 41); height: 12000px">
-    <app-navigation></app-navigation>
-</div>
-<div style="position: absolute; top: -8px; left: 800px;"  >
-   <app-login></app-login>  </div>
 
- <!---- <div style="position: absolute; top: 0px; right: 200px;" >
-   <app-customerview></app-customerview>
+<header>
+  
+<div class = "container">
+  <a routerLink = "/home" class = "logo"> {{appTitle}}</a>
+  <nav>
+      <button type= "button" mat-button  style= "position: left 200 px" routerLink="/addcustomer" >Signup</button>
+      <button  type= "button" mat-button style= "position: left 400 px"   routerLink="/about" >About us</button>
+      <button type= "button" mat-button  style= "position: left 500 px"  routerLink="/home" ><mat-icon>home</mat-icon></button>
+  </nav>
 </div>
--->
-<div style="position: absolute; top: 0px; left: 310px;">
+   </header>
+<div style="position: absolute; top: 200px; left: 30px;">
     <router-outlet></router-outlet>
 </div>
 
-<!-----<app-money-transfe-form></app-money-transfe-form>
-<app-table></app-table>
-     <app-login></app-login>
-    <app-home></app-home>
-      <router-outlet></router-outlet>
--->    
-   

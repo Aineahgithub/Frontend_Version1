@@ -1,23 +1,28 @@
-
+<div class="alert alert-danger" [hidden]="!error">
+	There was a problem logging in. Please try again.
+</div>
   <div class="container-fluid">
-  <h2>Login</h2>
+  <h4>Login</h4>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Username</label>
-      <input  placeholder=" name" type="text" [class.is-invalid]="userName.invalid && userName.touched" formControlName="userName" class="form-control">
-      <div *ngIf="userName.invalid && userName.touched">
-        <small class="text-danger" *ngIf="userName.errors?.required">Username is required</small>
-        <small class="text-danger" *ngIf="userName.errors?.minlength">Username must be at least 3 characters</small>
+      <input [(ngModel)]="username" placeholder=" name" type="text" 
+      [class.is-invalid]="username.invalid && username.touched" formControlName="username" class="form-control">
+      <div *ngIf="username.invalid && username.touched">
+        <small class="text-danger" *ngIf="username.errors?.required">Username is required</small>
+        <small class="text-danger" *ngIf="username.errors?.minlength">Username must be at least 3 characters</small>
       </div>
       <br>
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" formControlName="password" class="form-control">
-      <div *ngIf="password.invalid && password.touched">
-        <small class="text-danger" *ngIf="password.errors?.required">Password is required</small>
-        <small class="text-danger" *ngIf="password.errors?.maxlength">Password must have 5 characters</small>
+      <input [(ngModel)]="credentials.password"type="password" formControlName="passwort" class="form-control">
+      <div *ngIf="passwort.invalid && passwort.touched">
+        <small class="text-danger" *ngIf="passwort.errors?.required">Password is required</small>
+        <small class="text-danger" *ngIf="passwort.errors?.maxlength">Password must have 5 characters</small>
       </div>
 
       <button type= "button" mat-button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">Login</button>
     </div>
+</form>
+

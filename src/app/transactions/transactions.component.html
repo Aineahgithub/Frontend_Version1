@@ -1,1 +1,14 @@
+<div>
+    <button type= "button" mat-button (click)=showTransactions() > show Transactions </button>
+    <ol>
 
+    
+ <li *ngFor="let transfer of listOfTransfers">
+    sender: {{transfer.fromAccountId}},
+    receiver: {{transfer.toAccountId}},
+    amount :{{transfer.amount}} Euro,
+    message :{{transfer.message}},
+    Date :  {{transfer.date}}
+    </li>
+</ol>
+  </div>
